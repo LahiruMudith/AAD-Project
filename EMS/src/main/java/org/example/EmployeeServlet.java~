@@ -147,7 +147,7 @@ public class EmployeeServlet extends HttpServlet {
         ObjectMapper mapper = new ObjectMapper();
         PrintWriter out = response.getWriter();
 
-        String ename = request.getParameter("eid");
+        String eid = request.getParameter("eid");
         String ename = request.getParameter("ename");
         String enumber = request.getParameter("enumber");
         String eaddress = request.getParameter("eaddress");
