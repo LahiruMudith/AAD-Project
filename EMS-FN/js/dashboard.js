@@ -126,6 +126,7 @@ function editEmployee(eid) {
 
                 $('#save-employee').hide();
                 $('#update-employee').show();
+                $('#eimage').hide();
             } else {
                 alert('Employee not found!');
             }
@@ -147,10 +148,6 @@ $('#update-employee').on('click', function () {
     formData.append('eaddress', $('#eaddress').val());
     formData.append('edepartment', $('#edepartment').val());
     formData.append('estatus', $('#estatus').val());
-
-    const fileInput = $('#eimage')[0];
-    formData.append('eimage', fileInput.files[0]);
-
 
     $.ajax({
         method: 'PUT',
