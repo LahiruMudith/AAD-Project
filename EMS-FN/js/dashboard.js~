@@ -149,8 +149,12 @@ $('#update-employee').on('click', function () {
     formData.append('estatus', $('#estatus').val());
 
     const fileInput = $('#eimage')[0];
-    formData.append('eimage', fileInput.files[0]);
-
+    if (fileInput.files.length > 0) {
+        formData.append('eimage', fileInput.files[0]);
+    } else {
+        alert('Please select an image to upload.');
+        return;
+    }
 
     $.ajax({
         method: 'PUT',

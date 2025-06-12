@@ -65,7 +65,7 @@ public class EmployeeServlet extends HttpServlet {
             pstm.setString(4, eaddress);
             pstm.setString(5, edepartment);
             pstm.setString(6, estatus);
-            pstm.setString(7, fileAbsolutePath); // relative path for web access
+            pstm.setString(7, fileName); // relative path for web access
 
             int executed = pstm.executeUpdate();
 
@@ -147,12 +147,26 @@ public class EmployeeServlet extends HttpServlet {
         ObjectMapper mapper = new ObjectMapper();
         PrintWriter out = response.getWriter();
 
-        String eid = request.getParameter("eid");
+        String ename = request.getParameter("eid");
         String ename = request.getParameter("ename");
         String enumber = request.getParameter("enumber");
         String eaddress = request.getParameter("eaddress");
         String edepartment = request.getParameter("edepartment");
         String estatus = request.getParameter("estatus");
+
+        Part filePart = request.getPart("eimage");
+        String originalFileName = filePart.getSubmittedFileName();
+        String fileName = UUID.randomUUID() + "_" + originalFileName;
+
+        String uploadPath = "C:\\Users\\lahir\\Documents\\IJSE\\2nd Sem\\AAD\\JAVAEE-FINAL-PROJECT-71\\EMS-FN\\assets";
+        java.io.File uploadDir = new java.io.File(uploadPath);
+        if (!uploadDir.exists()) {
+            uploadDir.mkdirs();
+        }
+
+        String fileAbsolutePath = uploadPath + java.io.File.separator + fileName;
+        filePart.write(fileAbsolutePath);
+
 
         ServletContext sc = request.getServletContext();
         BasicDataSource ds = (BasicDataSource) sc.getAttribute("ds");

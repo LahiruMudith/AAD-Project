@@ -154,6 +154,20 @@ public class EmployeeServlet extends HttpServlet {
         String edepartment = request.getParameter("edepartment");
         String estatus = request.getParameter("estatus");
 
+        Part filePart = request.getPart("eimage");
+        String originalFileName = filePart.getSubmittedFileName();
+        String fileName = UUID.randomUUID() + "_" + originalFileName;
+
+        String uploadPath = "C:\\Users\\lahir\\Documents\\IJSE\\2nd Sem\\AAD\\JAVAEE-FINAL-PROJECT-71\\EMS-FN\\assets";
+        java.io.File uploadDir = new java.io.File(uploadPath);
+        if (!uploadDir.exists()) {
+            uploadDir.mkdirs();
+        }
+
+        String fileAbsolutePath = uploadPath + java.io.File.separator + fileName;
+        filePart.write(fileAbsolutePath);
+
+
         ServletContext sc = request.getServletContext();
         BasicDataSource ds = (BasicDataSource) sc.getAttribute("ds");
 
