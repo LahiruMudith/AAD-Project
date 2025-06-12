@@ -73,7 +73,7 @@ function fetchEmployees() {
                             <td>${employee.edepartment}</td>
                             <td>${employee.estatus}</td>
                             <td>
-                                <img src="../assets/${employee.eimage}" alt="Employee Image" width="60" height="60"  />
+                                <img src="../assets/${employee.eimage}" alt="Employee Image" width="60" height="60" class="rounded-circle" />
                             </td>
                         </tr>
                     `);
